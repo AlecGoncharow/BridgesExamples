@@ -44,6 +44,23 @@ public class UniqueLyric
 			return false;
 	}
 
+	public int compareTo(Object o)
+	{
+		if (o instanceof UniqueLyric)
+		{
+			UniqueLyric other = (UniqueLyric) o;
+
+			if (this.occurrences > other.occurrences)
+				return -1;
+			else if (this.occurrences < other.occurrences)
+				return 1;
+			else
+				return 0;
+		}
+		else
+			return 0;
+	}
+
 	public String toString()
 	{
 		return String.format("%s, %d, %s", lyric, occurrences, indices);

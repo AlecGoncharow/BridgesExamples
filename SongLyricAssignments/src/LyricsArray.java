@@ -76,7 +76,7 @@ public class LyricsArray
 
 		String[] lyricsSplit = LyricsUtils.splitLyrics(lyrics);
 
-		NewLyric[] convert = new NewLyric[lyricsSplit.length];
+		NewLyric[] convert = new NewLyric[lyricsSplit.length];	//converts the Strings into a class I made to make parsing easier on myself
 		for (int i = 0; i < convert.length; i++)
 		{
 			convert[i] = new NewLyric(lyricsSplit[i], i);
@@ -84,7 +84,7 @@ public class LyricsArray
 
 		ArrayList<UniqueLyric> uniqueLyrics = new ArrayList();
 
-		for (NewLyric word : convert)
+		for (NewLyric word : convert)	//parses the individual lyrics and indexes where the repeats are
 		{
 			if (uniqueLyrics.contains(word))
 			{
@@ -97,26 +97,7 @@ public class LyricsArray
 			}
 		}
 
-		uniqueLyrics.sort(new Comparator<UniqueLyric>()
-		{
-			@Override
-			public int compare(UniqueLyric o1, UniqueLyric o2)
-			{
-				if (o1.occurrences > o2.occurrences)
-					return -1;
-				else if (o1.occurrences < o2.occurrences)
-					return 1;
-				else
-					return 0;
-			}
-		});
-
-		System.out.println(uniqueLyrics.size());
-
-		for (UniqueLyric lyric : uniqueLyrics)
-		{
-			System.out.println(lyric);
-		}
+		uniqueLyrics.sort((UniqueLyric o1, UniqueLyric o2) -> o1.compareTo(o2));	//sorts the array based on occurrences, highest first
 
 		int[] dims = {uniqueLyrics.size(), 1, 1};
 		Array<UniqueLyric> visualArray = new Array<>(1, dims);
