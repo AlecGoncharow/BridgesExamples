@@ -75,7 +75,7 @@ public class LyricsArray
 
 		String[] lyricsSplit = LyricsUtils.splitLyrics(lyrics);
 
-		Lyric[] convert = LyricsUtils.convertToNewLyric(lyricsSplit);
+		Lyric[] convert = LyricsUtils.convertToLyric(lyricsSplit);
 
 		ArrayList<UniqueLyric> uniqueLyrics = new ArrayList();
 
@@ -87,7 +87,7 @@ public class LyricsArray
 			}
 			else
 			{
-				uniqueLyrics.add(new UniqueLyric(word.lyric));
+				uniqueLyrics.add(new UniqueLyric(word.lyric, word.index));
 				uniqueLyrics.get(uniqueLyrics.indexOf(word)).addOccurrence(word.index);
 			}
 		}

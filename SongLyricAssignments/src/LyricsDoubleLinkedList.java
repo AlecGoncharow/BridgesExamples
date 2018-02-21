@@ -77,11 +77,10 @@ public class LyricsDoubleLinkedList
 
 		ArrayList<LyricNode> list = new ArrayList<>();
 
-		Lyric[] convert = LyricsUtils.convertToNewLyric(lyricsSplit);
+		Lyric[] convert = LyricsUtils.convertToLyric(lyricsSplit);
 
 		for (Lyric word : convert)	//parses the individual lyrics and indexes where the repeats are
 		{
-			System.out.println(word.lyric);
 			if (uniqueLyrics.contains(word))
 			{
 				LyricNode newWord = new LyricNode(word.lyric, word.index);
@@ -100,13 +99,10 @@ public class LyricsDoubleLinkedList
 			}
 		}
 
-		System.out.println(uniqueLyrics);
-		System.out.println(list);
-
-
 		DLelement<LyricNode>[] linkedList = new DLelement[list.size()];
 		DLelement<LyricNode> head = new DLelement<>(list.get(0).lyric, list.get(0));
 		linkedList[0] = head;
+
 		DLelement<LyricNode> curr = head;
 		for (int i = 1; i < list.size(); i++)	//builds list
 		{
@@ -120,7 +116,6 @@ public class LyricsDoubleLinkedList
 		{
 			if (list.get(i).lastOccurence != null)
 			{
-				System.out.println(list.get(i) + " | " + linkedList[list.get(i).lastOccurence.index].getValue());
 				curr.setPrev(linkedList[list.get(i).lastOccurence.index]);
 			}
 			curr = curr.getNext();
