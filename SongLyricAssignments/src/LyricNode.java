@@ -7,6 +7,7 @@ public class LyricNode
 	LyricNode lastOccurence;
 	int index;
 	String lyric;
+	int uniqueNumber;
 
 	public LyricNode(String lyric, int index)
 	{
@@ -14,6 +15,7 @@ public class LyricNode
 		this.index = index;
 		this.lastOccurence = null;
 		this.next = null;
+		this.uniqueNumber = -1;
 	}
 
 	public void setNext(LyricNode next)
@@ -24,6 +26,11 @@ public class LyricNode
 	public void setLastOccurence(LyricNode lastOccurence)
 	{
 		this.lastOccurence = lastOccurence;
+	}
+
+	public void setUniqueNumber(int uniqueNumber)
+	{
+		this.uniqueNumber = uniqueNumber;
 	}
 
 	public String toString()

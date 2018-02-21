@@ -1,6 +1,7 @@
 import bridges.connect.Bridges;
 import bridges.base.DLelement;
 import java.util.ArrayList;
+import bridges.base.Color;
 
 /**
  * This is an attempt to make a Double Linked list where each node a lyric that points to the next word in the song and the last occurrence of that same word in the song
@@ -88,6 +89,7 @@ public class LyricsDoubleLinkedList
 				list.add(newWord);
 				list.get(list.size() - 1).setLastOccurence(list.get(uniqueLyrics.get(uniqueLyrics.indexOf(word)).lastOccurence));
 				uniqueLyrics.get(uniqueLyrics.indexOf(word)).addOccurrence(word.index);
+				list.get(list.indexOf(newWord)).setUniqueNumber(uniqueLyrics.indexOf(word));
 			}
 			else
 			{
@@ -96,19 +98,28 @@ public class LyricsDoubleLinkedList
 				list.add(newWord);
 				uniqueLyrics.add(new UniqueLyric(word.lyric, word.index));
 				uniqueLyrics.get(uniqueLyrics.size() - 1).addOccurrence(word.index);
+				list.get(list.indexOf(newWord)).setUniqueNumber(uniqueLyrics.size() - 1);
 			}
+		}
+
+		Color[] colors = new Color[uniqueLyrics.size()];
+
+		for (int i = 0; i < uniqueLyrics.size(); i++)
+		{
+			colors[i] = new Color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255));
 		}
 
 		DLelement<LyricNode>[] linkedList = new DLelement[list.size()];
 		DLelement<LyricNode> head = new DLelement<>(list.get(0).lyric, list.get(0));
 		linkedList[0] = head;
-
+		head.getVisualizer().setColor(colors[list.get(0).uniqueNumber]);
 		DLelement<LyricNode> curr = head;
 		for (int i = 1; i < list.size(); i++)	//builds list
 		{
 			curr.setNext(new DLelement<>(list.get(i).lyric, list.get(i)));
 			curr = curr.getNext();
 			linkedList[i] = curr;
+			curr.getVisualizer().setColor(colors[list.get(i).uniqueNumber]);
 		}
 
 		curr = head;
