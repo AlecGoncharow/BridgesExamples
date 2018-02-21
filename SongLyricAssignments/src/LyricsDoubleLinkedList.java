@@ -1,13 +1,11 @@
-/**
- * Created by Alec on Feb 11, 2018.
- */
-import bridges.base.Array;
-import bridges.base.Element;
 import bridges.connect.Bridges;
-
+import bridges.base.DLelement;
 import java.util.ArrayList;
 
-public class LyricsArray
+/**
+ * This is an attempt to make a Double Linked list where each node a lyric that points to the next word in the song and the last occurrence of that same word in the song
+ */
+public class LyricsDoubleLinkedList
 {
 	static String lyrics = "[Intro]\n" +
 			"Is this the real life? Is this just fantasy?\n" +
@@ -71,41 +69,66 @@ public class LyricsArray
 
 	public static void main(String[] args) throws Exception
 	{
-		Bridges bridges = new Bridges(4, "904691509236", "agoncharow");
+		Bridges bridges = new Bridges(5, "904691509236", "agoncharow");
 
 		String[] lyricsSplit = LyricsUtils.splitLyrics(lyrics);
 
-		Lyric[] convert = LyricsUtils.convertToNewLyric(lyricsSplit);
-
 		ArrayList<UniqueLyric> uniqueLyrics = new ArrayList();
+
+		ArrayList<LyricNode> list = new ArrayList<>();
+
+		Lyric[] convert = LyricsUtils.convertToNewLyric(lyricsSplit);
 
 		for (Lyric word : convert)	//parses the individual lyrics and indexes where the repeats are
 		{
+			System.out.println(word.lyric);
 			if (uniqueLyrics.contains(word))
 			{
+				LyricNode newWord = new LyricNode(word.lyric, word.index);
+				list.get(list.size() - 1).setNext(newWord);
+				list.add(newWord);
+				list.get(list.size() - 1).setLastOccurence(list.get(uniqueLyrics.get(uniqueLyrics.indexOf(word)).lastOccurence));
 				uniqueLyrics.get(uniqueLyrics.indexOf(word)).addOccurrence(word.index);
 			}
 			else
 			{
-				uniqueLyrics.add(new UniqueLyric(word.lyric));
-				uniqueLyrics.get(uniqueLyrics.indexOf(word)).addOccurrence(word.index);
+				LyricNode newWord = new LyricNode(word.lyric, word.index);
+				if (list.size() > 1) list.get(list.size() - 1).setNext(newWord);
+				list.add(newWord);
+				uniqueLyrics.add(new UniqueLyric(word.lyric, word.index));
+				uniqueLyrics.get(uniqueLyrics.size() - 1).addOccurrence(word.index);
 			}
 		}
 
-		uniqueLyrics.sort((UniqueLyric o1, UniqueLyric o2) -> o1.compareTo(o2));	//sorts the array based on occurrences, highest first
+		System.out.println(uniqueLyrics);
+		System.out.println(list);
 
-		int[] dims = {uniqueLyrics.size(), 1, 1};
-		Array<UniqueLyric> visualArray = new Array<>(1, dims);
 
-		for (int i = 0; i < uniqueLyrics.size(); i++)
+		DLelement<LyricNode>[] linkedList = new DLelement[list.size()];
+		DLelement<LyricNode> head = new DLelement<>(list.get(0).lyric, list.get(0));
+		linkedList[0] = head;
+		DLelement<LyricNode> curr = head;
+		for (int i = 1; i < list.size(); i++)	//builds list
 		{
-			visualArray.setValue(i,new Element<UniqueLyric>(uniqueLyrics.get(i).toString(), uniqueLyrics.get(i)));
-			visualArray.getValue(i).getVisualizer().setColor(0, (uniqueLyrics.get(i).occurrences * 9) + 100, 0, 1);
+			curr.setNext(new DLelement<>(list.get(i).lyric, list.get(i)));
+			curr = curr.getNext();
+			linkedList[i] = curr;
+		}
+
+		curr = head;
+		for (int i = 0; i < list.size(); i++)
+		{
+			if (list.get(i).lastOccurence != null)
+			{
+				System.out.println(list.get(i) + " | " + linkedList[list.get(i).lastOccurence.index].getValue());
+				curr.setPrev(linkedList[list.get(i).lastOccurence.index]);
+			}
+			curr = curr.getNext();
 		}
 
 
-		bridges.setDataStructure(visualArray);
+		bridges.setDataStructure(head);
+		bridges.visualize();
 
-		bridges.visualize(); //output: http://bridges-cs.herokuapp.com/assignments/4/agoncharow
 	}
 }

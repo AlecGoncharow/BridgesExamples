@@ -3,22 +3,30 @@ import java.util.ArrayList;
 /**
  * Created by Alec on Feb 11, 2018.
  */
-public class UniqueLyric
+public class UniqueLyric extends Lyric
 {
 	int occurrences;
-	String lyric;
 	ArrayList<Integer> indices;
-
+	int lastOccurence;
 
 	public UniqueLyric()
 	{
-
+		this.occurrences = 0;
+		this.lyric = null;
+		this.indices = new ArrayList<>();
 	}
 
 	public UniqueLyric(String lyric)
 	{
+		super(lyric);
 		this.occurrences = 0;
-		this.lyric = lyric;
+		indices = new ArrayList<>();
+	}
+
+	public UniqueLyric(String lyric, int index)
+	{
+		super(lyric, index);
+		this.occurrences = 0;
 		indices = new ArrayList<>();
 	}
 
@@ -26,22 +34,7 @@ public class UniqueLyric
 	{
 		indices.add(index);
 		this.occurrences++;
-	}
-
-	@Override
-	public boolean equals(Object O)
-	{
-		if (O instanceof UniqueLyric)
-		{
-			UniqueLyric other = (UniqueLyric) O;
-
-			if (this.lyric.equalsIgnoreCase(other.lyric))
-				return true;
-			else
-				return false;
-		}
-		else
-			return false;
+		lastOccurence = index;
 	}
 
 	public int compareTo(Object o)
@@ -63,6 +56,6 @@ public class UniqueLyric
 
 	public String toString()
 	{
-		return String.format("%s, %d, %s", lyric, occurrences, indices);
+		return String.format("%s, %d, %s", super.lyric, occurrences, indices);
 	}
 }

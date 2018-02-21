@@ -17,4 +17,14 @@ public class LyricsUtils
 
 		return lyricsSplit;
 	}
+
+	public static Lyric[] convertToNewLyric(String[] lyrics)
+	{
+		Lyric[] convert = new Lyric[lyrics.length];	//converts the Strings into a class I made to make parsing easier on myself
+		for (int i = 0; i < convert.length; i++)
+		{
+			convert[i] = new Lyric(lyrics[i], i);
+		}
+		return convert;
+	}
 }
