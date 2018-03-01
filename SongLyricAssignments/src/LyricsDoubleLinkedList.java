@@ -70,7 +70,7 @@ public class LyricsDoubleLinkedList
 
 	public static void main(String[] args) throws Exception
 	{
-		Bridges bridges = new Bridges(5, "904691509236", "agoncharow");
+		Bridges bridges = new Bridges(5, "1460086858525", "agoncharow");
 
 		String[] lyricsSplit = LyricsUtils.splitLyrics(lyrics);
 
@@ -87,7 +87,7 @@ public class LyricsDoubleLinkedList
 				LyricNode newWord = new LyricNode(word.lyric, word.index);
 				list.get(list.size() - 1).setNext(newWord);
 				list.add(newWord);
-				list.get(list.size() - 1).setLastOccurence(list.get(uniqueLyrics.get(uniqueLyrics.indexOf(word)).lastOccurence));
+				list.get(list.size() - 1).setLastOccurrence(list.get(uniqueLyrics.get(uniqueLyrics.indexOf(word)).lastOccurence));
 				uniqueLyrics.get(uniqueLyrics.indexOf(word)).addOccurrence(word.index);
 				list.get(list.indexOf(newWord)).setUniqueNumber(uniqueLyrics.indexOf(word));
 			}
@@ -116,7 +116,7 @@ public class LyricsDoubleLinkedList
 		DLelement<LyricNode> curr = head;
 		for (int i = 1; i < list.size(); i++)	//builds list
 		{
-			curr.setNext(new DLelement<>(list.get(i).lyric, list.get(i)));
+			curr.setNext(new DLelement<>(list.get(i).toString(), list.get(i)));
 			curr = curr.getNext();
 			linkedList[i] = curr;
 			curr.getVisualizer().setColor(colors[list.get(i).uniqueNumber]);
@@ -132,9 +132,11 @@ public class LyricsDoubleLinkedList
 			curr = curr.getNext();
 		}
 
-
 		bridges.setDataStructure(head);
+		bridges.setTitle("Double Linked List of Lyrics");
+		bridges.setDescription("These nodes represent individual lyrics in the song Bohemian Rhapsody, each contains it's own index in the song: the word it represents | " +
+				"a pointer to the next lyric | and the index of the last occurrence of the word, which it points to. The colors are randomly generated and each color represents" +
+				"a different unique word, so if two nodes have the same color, they should represent the same word, just at different indexes.");
 		bridges.visualize();
-
 	}
 }
