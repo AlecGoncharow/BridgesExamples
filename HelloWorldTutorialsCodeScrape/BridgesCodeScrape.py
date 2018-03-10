@@ -1,12 +1,12 @@
-import requests
+	import requests
 import re
 import os
 from bs4 import BeautifulSoup
 
 javaAssignmentIndex = 6  # Starting index for java code
 cppAssignmentIndex = 30  # Starting index for c++ code
-APIkey = 1460086858525   # API key as an integer
-userName = "agoncharow"  # userName as a String
+APIkey =    # API key as an integer
+userName = ""  # userName as a String
 javaCodePath = ".\\javaCode\\"  # Directory to output java code in
 cppCodePath = ".\\cppCode\\"    # Directory to output c++ code in
 
@@ -61,6 +61,15 @@ for page in javaTabHTMLs:   # Finds the java code and saves a link to it
             link = re.sub(r"^./", "", link)
             link = baseUrl + link
             javaFileDownloads.append(link)
+for page in javaTabHTMLs:   # Finds the java code and saves a link to it
+    for pre in page.find_all('div', {'class': 'prettyprint'}):
+        if re.search(r"w3-include-html", str(pre)) is not None:
+            spanOfSearch = re.search(r"w3-include-html=\".+\"", str(pre)).span()
+            link = str(pre)[spanOfSearch[0] + 17: spanOfSearch[1] - 1]
+            link = re.sub(r"^./", "", link)
+            link = baseUrl + link
+            javaFileDownloads.append(link)
+
 
 cppFileDownloads = []
 for page in cppTabHTMLs:    # Finds the C++ code and saves a link to it
@@ -68,6 +77,14 @@ for page in cppTabHTMLs:    # Finds the C++ code and saves a link to it
         if re.search(r"w3-include-html", str(pre)) is not None:
             spanOfSearch = re.search(r"w3-include-html=\".+\"", str(pre)).span()
             link = str(pre)[spanOfSearch[0] + 17: spanOfSearch[1] - 1]
+            link = re.sub(r"^./", "", link)
+            link = baseUrl + link
+            cppFileDownloads.append(link)
+for page in cppTabHTMLs:    # Finds the C++ code and saves a link to it
+    for div in page.find_all('div', {'class': 'prettyprint'}):
+        if re.search(r"w3-include-html", str(div)) is not None:
+            spanOfSearch = re.search(r"w3-include-html=\".+\"", str(div)).span()
+            link = str(div)[spanOfSearch[0] + 17: spanOfSearch[1] - 1]
             link = re.sub(r"^./", "", link)
             link = baseUrl + link
             cppFileDownloads.append(link)
@@ -105,5 +122,6 @@ for i, cppFile in enumerate(cppFiles):  # Writes the C++ file, naming it based o
     cppFile = re.sub(r"&lt;*", "<", cppFile)    # fixes angled bracket encoding
     cppFile = re.sub(r"&gt;*", ">", cppFile)
     cppAssignmentIndex += 1
+    print(cppAssignmentIndex)
     newFile.write(cppFile)
     newFile.close()

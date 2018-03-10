@@ -9,7 +9,7 @@ public class bst_eq {
 	public static void main(String[] args) throws Exception{
     	
    					//create the Bridges object
-		Bridges bridges = new Bridges(20, "1460086858525", "agoncharow");
+		Bridges bridges = new Bridges(24, "549234500406", "agoncharow");
 
 		bridges.setTitle("A Binary Search Tree Example with Earthquake Data");
 

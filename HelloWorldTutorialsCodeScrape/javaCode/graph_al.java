@@ -11,7 +11,7 @@ public class graph_al {
 	public static void main(String[] args) throws Exception {
 
 					// initialize Bridges
-		Bridges bridges = new Bridges(22, "1460086858525", "agoncharow");
+		Bridges bridges = new Bridges(26, "549234500406", "agoncharow");
 
 					// set a title for the visualization
 		bridges.setTitle("A Simple Graph Example using IMDB Actor/Movie Data");

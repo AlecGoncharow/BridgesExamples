@@ -11,7 +11,7 @@ DLelement<StudentInfo> *insertFront(DLelement<StudentInfo> *front,
 				DLelement<StudentInfo> *new_el);
 int main() {
 
-	Bridges::initialize(35, "agoncharow", "1460086858525");
+	Bridges::initialize(35, "agoncharow", "549234500406");
 
 						// load student info
 	int num_students = 5;

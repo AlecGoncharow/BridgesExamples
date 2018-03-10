@@ -1,4 +1,3 @@
-
 #include "Bridges.h"
 #include "MLelement.h"
 
@@ -6,41 +5,41 @@ using namespace bridges;
 
 int main()  {
     								//create the Bridges object
-	Bridges::initialize(37, "agoncharow", "1460086858525");
+	Bridges::initialize(46, "agoncharow", "549234500406");
 	Bridges::setTitle("A Trivial Multilist Example");
 
     								//create  a linked list 
 
-	MLelement<int> *el0 = new MLelement<int>(0");
-	MLelement<int> *el1 = new MLelement<int>(1");
-	MLelement<int> *el2 = new MLelement<int>(2");
-	MLelement<int> *el3 = new MLelement<int>(3");
-	MLelement<int> *el4 = new MLelement<int>(4");
+	MLelement<int> *el0 = new MLelement<int>("0");
+	MLelement<int> *el1 = new MLelement<int>("1");
+	MLelement<int> *el2 = new MLelement<int>("2");
+	MLelement<int> *el3 = new MLelement<int>("3");
+	MLelement<int> *el4 = new MLelement<int>("4");
 		
 	el0->setNext(el1);
 	el1->setNext(el2);
 	el2->setNext(el3);
 	el3->setNext(el4);
 								// create a sublist from 2
-	MLelement<int> *el5 = new MLelement<int>(5");
-	MLelement<int> *el6 = new MLelement<int>(6");
-	MLelement<int> *el7 = new MLelement<int>(7");
+	MLelement<int> *el5 = new MLelement<int>("5");
+	MLelement<int> *el6 = new MLelement<int>("6");
+	MLelement<int> *el7 = new MLelement<int>("7");
 							
 	el5->setNext(el6);
 	el6->setNext(el7);
 
 	el2->setSubList(el5);
 
-	MLelement<int> *el8 = new MLelement<int>(8");
-	MLelement<int> *el9 = new MLelement<int>(9");
+	MLelement<int> *el8 = new MLelement<int>("8");
+	MLelement<int> *el9 = new MLelement<int>("9");
 
 							// create a second sublist from 3
 	el8->setNext(el9);
 	el3->setSubList(el8);
 
 							// create a sublist from 5
-	MLelement<int> *el10 = new MLelement<int>(10");
-	MLelement<int> *el11 = new MLelement<int>(11");
+	MLelement<int> *el10 = new MLelement<int>("10");
+	MLelement<int> *el11 = new MLelement<int>("11");
 	el10->setNext(el11);
 	el6->setSubList(el10);
 
@@ -59,3 +58,4 @@ int main()  {
         							// visualize the list
 	Bridges::visualize();
 }
+

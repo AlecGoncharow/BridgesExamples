@@ -6,7 +6,7 @@ public class avl {
     public static void main(String[] args) throws Exception{
         
                     //create the Bridges object
-		Bridges bridges = new Bridges(21, "1460086858525", "agoncharow");
+		Bridges bridges = new Bridges(25, "549234500406", "agoncharow");
 
                     //create  an  AVL tree elements
 		AVLTreeElement<Integer,String> avl_root = new AVLTreeElement<Integer,String>(50, 

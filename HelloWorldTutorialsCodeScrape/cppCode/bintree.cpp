@@ -5,7 +5,7 @@ using namespace bridges;
 
 int main() {
 
-	Bridges::initialize(39, "agoncharow", "1460086858525"); 
+	Bridges::initialize(48, "agoncharow", "549234500406"); 
 
 	Bridges::setTitle("A Huffman Coding Tree Example");
 	Bridges::setDescription("[Binary Tree Application]: Huffman tree coding the symbols C, D, E, K, L, M, U, Z with frequencies 32, 42, 120, 7, 42, 24, 37, 2");

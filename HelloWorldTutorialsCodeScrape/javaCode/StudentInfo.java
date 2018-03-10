@@ -1,4 +1,3 @@
-
 public class StudentInfo {
 	private String studentID,
 			fullName,
