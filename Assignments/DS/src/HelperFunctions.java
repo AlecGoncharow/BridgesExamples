@@ -62,9 +62,9 @@ public class HelperFunctions
 	}
 
 	//could be made private
-	public static int documentsContainingTerm(String term, String[][] corpus)
+	public static double documentsContainingTerm(String term, String[][] corpus)
 	{
-		int n = 0;
+		double n = 0;
 
 		for (String[] document : corpus)
 		{
