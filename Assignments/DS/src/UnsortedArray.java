@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 
-public class AssociativeArray<K, V>
+public class UnsortedArray<K, V> implements Dictionary<K, V>
 {
 	private static final int DEFAULT_CAPACITY = 11;
 	private static final double DEFAULT_LOAD_FACTOR = 0.75;
@@ -13,17 +13,17 @@ public class AssociativeArray<K, V>
 	private ArrayList<K> keySet;
 	private ArrayList<V> valueSet;
 
-	public AssociativeArray()
+	public UnsortedArray()
 	{
 		this(DEFAULT_CAPACITY, DEFAULT_LOAD_FACTOR);
 	}
 
-	public AssociativeArray(int capacity)
+	public UnsortedArray(int capacity)
 	{
 		this(capacity, DEFAULT_LOAD_FACTOR);
 	}
 
-	public AssociativeArray(int capacity, double loadFactor)
+	public UnsortedArray(int capacity, double loadFactor)
 	{
 		this.capacity = capacity;
 		this.loadFactor = loadFactor;
@@ -34,6 +34,7 @@ public class AssociativeArray<K, V>
 		this.valueSet = new ArrayList<V>();
 	}
 
+	@Override
 	public V put(K key, V value)
 	{
 
@@ -74,6 +75,7 @@ public class AssociativeArray<K, V>
 		return contains;
 	}
 
+	@Override
 	public V get(K key)
 	{
 		for (Entry pair : array)
@@ -89,27 +91,18 @@ public class AssociativeArray<K, V>
 		return null;
 	}
 
+	@Override
 	public ArrayList<K> getKeySet()
 	{
 		return keySet;
 	}
 
+	@Override
 	public ArrayList<V> getValueSet()
 	{
 		return valueSet;
 	}
 }
 
-class Entry<K, V>
-{
-	public K key;
-	public V value;
-
-	public Entry(K key, V value)
-	{
-		this.key = key;
-		this.value = value;
-	}
-}
 
 

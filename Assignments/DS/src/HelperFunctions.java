@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 public class HelperFunctions
 {
@@ -103,9 +102,9 @@ public class HelperFunctions
 	}
 
 
-	public static AssociativeArray vectorize(String[] document, String[][] corpus, String[] uniqueTerms)
+	public static Hashtable getHastableVector(String[] document, String[][] corpus, String[] uniqueTerms)
 	{
-		AssociativeArray vector = new AssociativeArray();
+		Hashtable vector = new Hashtable();
 
 		for (String term : uniqueTerms)
 		{
@@ -115,7 +114,19 @@ public class HelperFunctions
 		return vector;
 	}
 
-	public static double dotProduct(AssociativeArray v1,  AssociativeArray v2)
+	public static UnsortedArray getUnsortedArrayVector(String[] document, String[][] corpus, String[] uniqueTerms)
+	{
+		UnsortedArray vector = new UnsortedArray();
+
+		for (String term : uniqueTerms)
+		{
+			vector.put(term, termFrequencyInverseDocumentFrequency(term, document, corpus));
+		}
+
+		return vector;
+	}
+
+	public static double dotProduct(Dictionary v1, Dictionary v2)
 	{
 		double sum = 0;
 
@@ -127,7 +138,7 @@ public class HelperFunctions
 		return sum;
 	}
 
-	public static double norm( AssociativeArray vector)
+	public static double norm( Dictionary vector)
 	{
 		return Math.sqrt(dotProduct(vector, vector));
 	}
