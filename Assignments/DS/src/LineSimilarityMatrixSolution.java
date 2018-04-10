@@ -1,13 +1,19 @@
+import bridges.connect.Bridges;
+import bridges.base.ColorGrid;
+import bridges.base.Color;
 
 public class LineSimilarityMatrixSolution
 {
+
+
 	static String lyrics = SongStrings.feelGoodInc;	// Lyrics function here
 	static String[][] corpus = HelperFunctions.splitLines(lyrics);			// returns cleaned up corpus
 	static String[] uniqueTerms = HelperFunctions.getUniqueTerms(corpus);	// returns unique terms
 
 
-	public static void calculate(Dictionary[] documentVectors, double[][] cosineSimilarityMatrix, int amountOfDocuments)
+	public static ColorGrid calculate(Dictionary[] documentVectors, double[][] cosineSimilarityMatrix, int amountOfDocuments)
 	{
+		ColorGrid grid = new ColorGrid(documentVectors.length, "black");
 		if (documentVectors instanceof UnsortedArray[])
 			for (int i = 0; i < amountOfDocuments; i++)						//gets a hashtable representing the tfidf values of all terms in the corpus per document
 			{
@@ -30,17 +36,23 @@ public class LineSimilarityMatrixSolution
 				cosineSimilarityMatrix[j][i] = (HelperFunctions.dotProduct(documentVectors[i], documentVectors[j]) /
 						(HelperFunctions.norm(documentVectors[i])
 								* HelperFunctions.norm(documentVectors[j])));
-				System.out.print(cosineSimilarityMatrix[j][i]);
+				grid.set(i, j, new Color(0, 0, 0, (float)cosineSimilarityMatrix[j][i]));
+				System.out.println(grid.get(i, j).getAlpha());
+
+				//System.out.print(cosineSimilarityMatrix[j][i]);
 			}
-			System.out.println();
+			//System.out.println();
 		}
+		return grid;
 	}
 
 
-	public static void main(String[] args)
+	public static void main(String[] args) throws Exception
 	{
 		//Bridges Credentials
+		Bridges test = new Bridges(1 ,"549234500406", "agoncharow");
 
+		test.setServer("clone");
 
 		int amountOfDocuments = corpus.length;
 
@@ -50,13 +62,18 @@ public class LineSimilarityMatrixSolution
 		double[][] mat2 = new double[amountOfDocuments][amountOfDocuments];
 
 		long startTimeHash = System.nanoTime();
-		calculate(hash, mat1, amountOfDocuments);
+		ColorGrid grid = calculate(hash, mat1, amountOfDocuments);
 		long endTimeHash = System.nanoTime();
-		calculate(arr, mat2, amountOfDocuments);
+		//calculate(arr, mat2, amountOfDocuments);
 		long endTimeArray = System.nanoTime();
 
 		System.out.println(hash[0]);
 		System.out.printf("\n\n HASHTIME: %d \n ARRAY: %d", (endTimeHash-startTimeHash) / 1000000 , (endTimeArray-endTimeHash) / 1000000);
-		//Bridges visualize code
+
+
+
+		test.setDataStructure(grid);
+		test.setVisualizeJSON(true);
+		test.visualize();
 	}
 }
