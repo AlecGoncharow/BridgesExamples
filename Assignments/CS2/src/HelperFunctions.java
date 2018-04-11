@@ -1,3 +1,6 @@
+import bridges.base.Color;
+import bridges.base.ColorGrid;
+
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -38,7 +41,6 @@ public class HelperFunctions
 		return corpus;
 	}
 
-	//could be made private
 	public static int termFrequency(String term, String[] document)
 	{
 		int tf = 0;
@@ -51,7 +53,6 @@ public class HelperFunctions
 		return tf;
 	}
 
-	//could be made private
 	public static boolean hasTerm(String term, String[] document)
 	{
 		for (String word : document)
@@ -62,7 +63,6 @@ public class HelperFunctions
 		return false;
 	}
 
-	//could be made private
 	public static int documentsContainingTerm(String term, String[][] corpus)
 	{
 		int n = 0;
@@ -75,7 +75,6 @@ public class HelperFunctions
 		return n;
 	}
 
-	//could be made private
 	public static double inverseDocumentFrequency(String term, String[][] corpus)
 	{
 		return Math.log(corpus.length / (1 + documentsContainingTerm(term, corpus)));
@@ -115,6 +114,11 @@ public class HelperFunctions
 		return vector;
 	}
 
+	public static double cosine(Hashtable<String, Double> v1,  Hashtable<String, Double> v2)
+	{
+		return dotProduct(v1, v2)/(norm(v1) * norm(v2));
+	}
+
 	public static double dotProduct(Hashtable<String, Double> v1,  Hashtable<String, Double> v2)
 	{
 		double sum = 0;
@@ -130,5 +134,20 @@ public class HelperFunctions
 	public static double norm( Hashtable<String, Double> vector)
 	{
 		return Math.sqrt(dotProduct(vector, vector));
+	}
+
+	public static ColorGrid getGrid(double[][] matrix, int[] RGBValues)
+	{
+		ColorGrid grid = new ColorGrid(matrix.length, "white");
+
+		for (int i = 0; i < matrix.length; ++i)
+		{
+			for (int j = 0; j < matrix.length; ++j)
+			{
+				grid.set(i, j, new Color(RGBValues[0], RGBValues[1], RGBValues[2], (float)matrix[i][j]));
+			}
+		}
+
+		return grid;
 	}
 }

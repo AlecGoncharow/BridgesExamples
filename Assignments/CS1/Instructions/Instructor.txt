@@ -1,0 +1,25 @@
+Summary: This assignment outputs a matrix representing repetition in a String.  The students will be providing the loop and conditions for this repetition check.
+
+The students are expected to provide code that iterates over the entire array for each element, checking if the each element is equal to every other element in the array.
+An expected answer would be something like:
+
+for (int i = 0; i < wordCount; ++i)
+{
+	for (int j = 0; j < wordCount; ++j)
+	{
+		binaryMatrix[i][j] = lyrics[i].equalsIgnoreCase(lyrics[j]) ? 1 : 0;
+	}
+}
+
+or
+
+for (int i = 0; i < wordCount; ++i)
+{
+	for (int j = 0; j < wordCount; ++j)
+	{
+		if (lyrics[i].equalsIgnoreCase(lyrics[j])
+			binaryMatrix[i][j] = 1;
+	}
+}
+
+There are methods provided that will provide cleaned up strings for parsing and take this matrix and convert into a Bridges object to visualize.

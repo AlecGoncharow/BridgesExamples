@@ -1,12 +1,16 @@
+
+import bridges.base.ColorGrid;
+import bridges.connect.Bridges;
+
 import java.util.Hashtable;
 
 public class LineSimilarityMatrixSolution
 {
-	public static void main(String[] args)
+	public static void main(String[] args) throws Exception
 	{
-		//Bridges Credentials
+		Bridges bridges = new Bridges(105, "1134423833841", "agoncharow");
 
-		String lyrics = "";	// Lyrics function here
+		String lyrics = SongStrings.bohemianRhapsody;	// Lyrics function here
 		String[][] corpus = HelperFunctions.splitLines(lyrics);			// returns cleaned up corpus
 		String[] uniqueTerms = HelperFunctions.getUniqueTerms(corpus);	// returns unique terms
 		int amountOfDocuments = corpus.length;
@@ -24,12 +28,15 @@ public class LineSimilarityMatrixSolution
 			for (int j = 0; j < amountOfDocuments; j++)
 			{
 				// calculates the cosine between the vectors and stores it in the corresponding index of the matrix
-				cosineSimilarityMatrix[j][i] = (HelperFunctions.dotProduct(documentVectors[i], documentVectors[j]) /
-						(HelperFunctions.norm(documentVectors[i])
-								* HelperFunctions.norm(documentVectors[j])));
+				cosineSimilarityMatrix[j][i] = HelperFunctions.cosine(documentVectors[i], documentVectors[j]);
 			}
 		}
 
-		//Bridges visualize code
+		int[] RGBValues = {0, 0, 0};
+
+		ColorGrid grid = HelperFunctions.getGrid(cosineSimilarityMatrix, RGBValues);
+		bridges.setDataStructure(grid);
+		bridges.setServer("clone");
+		bridges.visualize();
 	}
 }

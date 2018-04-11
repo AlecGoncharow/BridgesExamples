@@ -167,4 +167,60 @@ public class SongStrings
             "So good, so good, 'cause I got you\n" +
             "So good, so good, 'cause I got you\n" +
             "So good, so good, 'cause I got you";
+
+    public static String hitTheRoadJack = "[Intro]\n" +
+            "\n" +
+            "Hit the road Jack and don't cha come back\n" +
+            "No more no more no more no more\n" +
+            "Hit the road Jack and don't cha come back\n" +
+            "No more\n" +
+            "What'd you say?\n" +
+            "\n" +
+            "Hit the road Jack and don't cha come back\n" +
+            "No more no more no more no more\n" +
+            "Hit the road Jack and don't cha come back\n" +
+            "No more\n" +
+            "\n" +
+            "Old woman old woman, oh you treat me so mean\n" +
+            "You're the meanest old woman that I've ever seen\n" +
+            "I guess if you say so\n" +
+            "I'll have to pack my things and go (that's right)\n" +
+            "\n" +
+            "Hit the road Jack and don't cha come back\n" +
+            "No more no more no more no more\n" +
+            "Hit the road Jack and don't cha come back\n" +
+            "No more\n" +
+            "What'd you say?\n" +
+            "\n" +
+            "Hit the road Jack and don't cha come back\n" +
+            "No more no more no more no more\n" +
+            "Hit the road Jack and don't cha come back\n" +
+            "No more\n" +
+            "\n" +
+            "Now baby, listen baby, don't you treat me this way\n" +
+            "Cause I'll be back on my feet some day\n" +
+            "Don't care if you do, cause it's understood\n" +
+            "You ain't got no money, you just a no good\n" +
+            "Well I guess if you say so\n" +
+            "I'll have to pack my things and go (that's right)\n" +
+            "\n" +
+            "Hit the road Jack and don't cha come back\n" +
+            "No more no more no more no more\n" +
+            "Hit the road Jack and don't cha come back\n" +
+            "No more\n" +
+            "What'd you say?\n" +
+            "\n" +
+            "Hit the road Jack and don't cha come back\n" +
+            "No more no more no more no more\n" +
+            "Hit the road Jack and don't cha come back\n" +
+            "No more\n" +
+            "\n" +
+            "Well, (don'cha come back no more)\n" +
+            "Uh, what'd you say? (don'cha come back no more)\n" +
+            "I didn't understand you (don'cha come back no more)\n" +
+            "You can't mean that (don'cha come back no more)\n" +
+            "Oh, now baby please (don'cha come back no more)\n" +
+            "What you're trying to do to me (don'cha come back no more)";
+
+
 }

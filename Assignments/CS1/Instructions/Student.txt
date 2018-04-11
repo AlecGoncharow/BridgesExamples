@@ -1,0 +1,7 @@
+Summary: This assignment outputs a matrix representing repetition in a String.  You will be providing the loop and conditions for this repetition check.
+
+Instructions: An array of Strings has been provided, you must itterate over this array and check each element with every other element, including itself.
+In order to check if two Strings are equal to one another I recommend looking at the API for Strings: https://docs.oracle.com/javase/8/docs/api/java/lang/String.html\
+In order to iterate over the array of Strings, I recommend looking into nested loops. 
+
+If you wish to modify the color of the output matrix, you are able to change the RGBA values at the bottom of the provided code.

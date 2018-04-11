@@ -8,34 +8,31 @@ import bridges.connect.Bridges;
 
 public class BinaryMatrixSampleSolution
 {
-
 	public static void main(String[] args) throws Exception
 	{
-		Bridges test = new Bridges(2 ,"549234500406", "agoncharow");
+		/*
+			The below variables declarations / initializations could be modified as needed to change difficulty
+		 */
 
-		test.setServer("clone");
+		Bridges bridges = new Bridges(-1, "API_KEY", "USER_NAME");	// bridges credentials
+		String[] lyrics = HelperFunctions.getLyrics("");									// returns already split and cleaned array of the lyrics
+		int wordCount = lyrics.length;															// makes the for loops and matrix initializations a bit cleaner, could be removed
+		int[][] binaryMatrix = new int[wordCount][wordCount];									// should be removed for more advanced students
 
-		//bridges credentials
-		String lyrics = SongStrings.feelGoodInc;
-		String[] lyricsSplit = HelperFunctions.splitLyrics(lyrics);
-
-		int wordCount = lyricsSplit.length;
-		ColorGrid grid = new ColorGrid(wordCount, "white");
-		int[][] binaryMatrix = new int[wordCount][wordCount];	//could be int or boolean
-
-		for (int i = 0; i < wordCount; i++)
+		for (int i = 0; i < wordCount; ++i)
 		{
-			for (int j = 0; j < wordCount; j++)
+			for (int j = 0; j < wordCount; ++j)
 			{
-				// unsure of when CS1 students learn of ternary operators, more likely to see if statements here
-				binaryMatrix[i][j] = lyricsSplit[i].equalsIgnoreCase(lyricsSplit[j]) ? 1 : 0;
-				if (binaryMatrix[i][j] == 1)
-					grid.set(i, j, new Color(0, 0,0,1));
- 			}
+				binaryMatrix[i][j] = lyrics[i].equalsIgnoreCase(lyrics[j]) ? 1 : 0;
+			}
 		}
 
-		test.setDataStructure(grid);
-		test.visualize();
-		//bridges visualize
+		Color defaultColor = new Color(0, 0, 0, 1);								// input your own RGBA values if you wish
+		Color matchColor = new Color(255, 255, 255, 1);
+
+		ColorGrid grid = HelperFunctions.getGrid(binaryMatrix, defaultColor, matchColor);
+		bridges.setDataStructure(grid);
+		bridges.setServer("clone");
+		bridges.visualize();
 	}
 }
