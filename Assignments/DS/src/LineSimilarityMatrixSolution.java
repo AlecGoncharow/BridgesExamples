@@ -6,7 +6,7 @@ public class LineSimilarityMatrixSolution
 {
 
 
-	static String lyrics = SongStrings.feelGoodInc;	// Lyrics function here
+	static String lyrics = SongData.feelGoodInc.getLyrics();	// Lyrics function here
 	static String[][] corpus = HelperFunctions.splitLines(lyrics);			// returns cleaned up corpus
 	static String[] uniqueTerms = HelperFunctions.getUniqueTerms(corpus);	// returns unique terms
 
@@ -23,7 +23,7 @@ public class LineSimilarityMatrixSolution
 		{
 			for (int i = 0; i < amountOfDocuments; i++)						//gets a hashtable representing the tfidf values of all terms in the corpus per document
 			{
-				documentVectors[i] = HelperFunctions.getHastableVector(corpus[i], corpus, uniqueTerms);
+				documentVectors[i] = HelperFunctions.getHashtableVector(corpus[i], corpus, uniqueTerms);
 			}
 		}
 		cosineSimilarityMatrix = new double[amountOfDocuments][amountOfDocuments];

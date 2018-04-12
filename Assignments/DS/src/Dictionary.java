@@ -1,8 +1,5 @@
 import java.util.ArrayList;
 
-/**
- * Created by Alec on Apr 3, 2018.
- */
 public interface Dictionary<K, V>
 {
 	V put(K key, V value);

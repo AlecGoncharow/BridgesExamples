@@ -101,8 +101,24 @@ public class HelperFunctions
 		return uniqueTerms.toArray(new String[0]);
 	}
 
+	public static String[] getUniqueTerms(Song[] corpus)
+	{
+		ArrayList<String> uniqueTerms = new ArrayList<>();
 
-	public static Hashtable getHastableVector(String[] document, String[][] corpus, String[] uniqueTerms)
+		for (Song document : corpus)
+		{
+			for (String term : splitDocument(document.getLyrics()))
+			{
+				if (!uniqueTerms.contains(term))
+					uniqueTerms.add(term);
+			}
+		}
+
+		return uniqueTerms.toArray(new String[0]);
+	}
+
+
+	public static Hashtable getHashtableVector(String[] document, String[][] corpus, String[] uniqueTerms)
 	{
 		Hashtable vector = new Hashtable();
 
@@ -112,6 +128,18 @@ public class HelperFunctions
 		}
 
 		return vector;
+	}
+
+	public static Hashtable getHashtableVector(Song document, Song[] corpus, String[] uniqueTerms)
+	{
+		String[][] corpusStrings = new String[corpus.length][];
+
+		for (int i = 0; i < corpus.length; ++i)
+		{
+			corpusStrings[i] = splitDocument(corpus[i].getLyrics());
+		}
+
+		return getHashtableVector(splitDocument(document.getLyrics()), corpusStrings, uniqueTerms);
 	}
 
 	public static UnsortedArray getUnsortedArrayVector(String[] document, String[][] corpus, String[] uniqueTerms)
@@ -141,5 +169,10 @@ public class HelperFunctions
 	public static double norm( Dictionary vector)
 	{
 		return Math.sqrt(dotProduct(vector, vector));
+	}
+
+	public static double cosine(Dictionary<String, Double> v1, Dictionary<String, Double> v2)
+	{
+		return dotProduct(v1, v2)/(norm(v1) * norm(v2));
 	}
 }
