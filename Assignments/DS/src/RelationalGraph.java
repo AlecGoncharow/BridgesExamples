@@ -5,11 +5,11 @@ public class RelationalGraph
 {
     public static void main(String[] args) throws Exception
     {
-        Bridges bridges = new Bridges(115, "121899988829", "agoncharow");
+        Bridges bridges = new Bridges(115, "1306669339612", "agoncharow");
 
         GraphAdjList<Song, Hashtable<String, Double>> graph = new GraphAdjList<>();
 
-        double threshold = 0.05;
+        double threshold = 0.07;
 
         Song song1 = SongData.bohemianRhapsody;
         Song song2 = SongData.feelGoodInc;
@@ -42,15 +42,14 @@ public class RelationalGraph
                 double cosine = HelperFunctions.cosine(documentVectors[i], documentVectors[j]);
                 if (cosine >= threshold)
                 {
-                    int weight = (int)(cosine*100);
-                    graph.addEdge(corpus[i], corpus[j], 5);
-                    System.out.println(weight);
+                    graph.addEdge(corpus[i], corpus[j]);
                 }
             }
         }
 
 
         bridges.setDataStructure(graph);
+        bridges.setServer("clone");
         bridges.visualize();
     }
 }

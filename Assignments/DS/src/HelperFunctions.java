@@ -1,3 +1,6 @@
+import bridges.base.Color;
+import bridges.base.ColorGrid;
+
 import java.util.ArrayList;
 
 public class HelperFunctions
@@ -174,5 +177,20 @@ public class HelperFunctions
 	public static double cosine(Dictionary<String, Double> v1, Dictionary<String, Double> v2)
 	{
 		return dotProduct(v1, v2)/(norm(v1) * norm(v2));
+	}
+
+	public static ColorGrid getGrid(double[][] matrix, int[] RGBValues)
+	{
+		ColorGrid grid = new ColorGrid(matrix.length, "white");
+
+		for (int i = 0; i < matrix.length; ++i)
+		{
+			for (int j = 0; j < matrix.length; ++j)
+			{
+				grid.set(i, j, new Color(RGBValues[0], RGBValues[1], RGBValues[2], (float)matrix[i][j]));
+			}
+		}
+
+		return grid;
 	}
 }

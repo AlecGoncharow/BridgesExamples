@@ -1,12 +1,18 @@
-import bridges.connect.Bridges;
-import bridges.base.ColorGrid;
-
-import java.util.ArrayList;
-
-
-public class LineSimilarityMatrixSolution
-{
-	public static int termFrequency(String term, String[] document)
+Summary: The students will be implementing methods to calculate a Cosine Similarity Matrix of lines within a song. The resulting matrix will represent how similar every line in a song is to every other line in that song.
+				To do this, students will be creating Hashtables that represent a vector of each lines Term Frequency Inverse Document Frequency(TF-IDF) values. 
+				
+Variables: 
+			String[][] corpus: This represents the entire body of work, all terms.
+			
+			String[] document: This represents a line in the song, already split and cleaned up for processing
+			
+			String term: This represents the current term which is currently being processed.
+			
+			Hashtable<String, Double> vector: This represents the vector of TF-IDF values used in the calculation of Cosine Similarity.
+				The key is a String which is the term whose dimension is being represented by the Double value, which is the TF-IDF value of that term.
+				
+Sample Solution:
+public static int termFrequency(String term, String[] document)
 	{
 		int tf = 0;
 
@@ -87,7 +93,7 @@ public class LineSimilarityMatrixSolution
 	{
 		double sum = 0;
 
-		for (String key : v1.getKeySet())
+		for (String key : v1.keySet())
 		{
 			sum += v1.get(key) * v2.get(key);
 		}
@@ -99,39 +105,5 @@ public class LineSimilarityMatrixSolution
 	{
 		return Math.sqrt(dotProduct(vector, vector));
 	}
-
-
-	public static void main(String[] args) throws Exception
-	{
-		Bridges bridges = new Bridges(109, "1306669339612", "agoncharow");
-
-		String lyrics = SongData.humble.getLyrics();	// Lyrics function here
-		String[][] corpus = HelperFunctions.splitLines(lyrics);			// returns cleaned up corpus
-		String[] uniqueTerms = getUniqueTerms(corpus);	// returns unique terms
-		int amountOfDocuments = corpus.length;
-		Hashtable<String, Double>[] documentVectors = new Hashtable[amountOfDocuments];
-
-		for (int i = 0; i < amountOfDocuments; i++)						//gets a hashtable representing the tfidf values of all terms in the corpus per document
-		{
-			documentVectors[i] = vectorize(corpus[i], corpus, uniqueTerms);
-		}
-
-		double[][] cosineSimilarityMatrix = new double[amountOfDocuments][amountOfDocuments];
-
-		for (int i = 0; i < amountOfDocuments; i++)
-		{
-			for (int j = 0; j < amountOfDocuments; j++)
-			{
-				// calculates the cosine between the vectors and stores it in the corresponding index of the matrix
-				cosineSimilarityMatrix[j][i] = cosine(documentVectors[i], documentVectors[j]);
-			}
-		}
-
-		int[] RGBValues = {0, 0, 0};
-
-		ColorGrid grid = HelperFunctions.getGrid(cosineSimilarityMatrix, RGBValues);
-		bridges.setDataStructure(grid);
-		bridges.setServer("clone");
-		bridges.visualize();
-	}
-}
+	
+	

@@ -36,18 +36,6 @@ public class Hashtable<K, V> implements Dictionary<K, V>
 
 	private int hash(K key)
 	{
-//		if (key instanceof String)
-//		{
-//			char[] chars = ((String) key).toCharArray();
-//			int hash = 0;
-//			for (int i = 0; i < chars.length; i++)
-//			{
-//				hash += Math.pow(31, chars.length - i)*((int)chars[i]);
-//
-//			}
-//			return hash % capacity;
-//		}
-//		else
 		int result = key.hashCode() % capacity;
 		return result < 0 ? result + capacity : result;
 	}

@@ -96,7 +96,7 @@ public class LineSimilarityMatrixSolution
 		return sum;
 	}
 
-	public static double norm( Hashtable<String, Double> vector)
+	public static double norm(Hashtable<String, Double> vector)
 	{
 		return Math.sqrt(dotProduct(vector, vector));
 	}
@@ -104,9 +104,9 @@ public class LineSimilarityMatrixSolution
 
 	public static void main(String[] args) throws Exception
 	{
-		Bridges bridges = new Bridges(109, "121899988829", "agoncharow");
+		Bridges bridges = new Bridges(109, "1306669339612", "agoncharow");
 
-		String lyrics = SongStrings.iFeelGood;	// Lyrics function here
+		String lyrics = SongStrings.humble;	// Lyrics function here
 		String[][] corpus = HelperFunctions.splitLines(lyrics);			// returns cleaned up corpus
 		String[] uniqueTerms = getUniqueTerms(corpus);	// returns unique terms
 		int amountOfDocuments = corpus.length;
@@ -133,8 +133,6 @@ public class LineSimilarityMatrixSolution
 		ColorGrid grid = HelperFunctions.getGrid(cosineSimilarityMatrix, RGBValues);
 		bridges.setDataStructure(grid);
 		bridges.setServer("clone");
-		bridges.setTitle("Cosine Similarity Matrix Example");
-		bridges.setDescription("James Brown - I Feel Good");
 		bridges.visualize();
 	}
 }

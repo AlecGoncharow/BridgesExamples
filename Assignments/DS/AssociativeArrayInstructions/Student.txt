@@ -1,0 +1,18 @@
+Summary: You will be creating a data structure that implements a Dictionary interface, which will take the place of the Hashtable from the Cosine Similarity Matrix assignement.
+
+Instructions: The interface you will be implementing has four methods that handles generics:
+
+public interface Dictionary<K, V>
+	V put(K key, V value);
+		Stores the Key Value pair in your data structure, returns old value if the key was already assigned.
+		
+	V get(K key);
+		Returns the value linked to the given key
+		
+	ArrayList<K> getKeySet();
+		Returns an ArrayList of all the keys
+
+	ArrayList<V> getValueSet();
+		Returns an ArrayList of all the values
+		
+You can implement this with a variety of different data structures: arrays, linked lists, binary trees.
